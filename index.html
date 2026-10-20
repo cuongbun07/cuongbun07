@@ -150,6 +150,86 @@ body:is([data-scene="letter"],[data-scene="finale"]) .progress-step{color:#945c7
 .music-dock-link{display:block;text-align:center;font-size:11px;margin-top:9px;color:#8b3b61;text-decoration:underline;text-underline-offset:3px}
 .sound-toggle[aria-pressed="true"]{border-color:#f4caa9;background:#a65370;color:#fff}
 @media(max-width:390px){.music-dock{right:10px;bottom:max(10px,env(safe-area-inset-bottom));width:calc(100vw - 20px)}}
+/* ===== 20/10 SIGNATURE TYPOGRAPHY — EDITORIAL ROSE GOLD ===== */
+:root{--body:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--display:"Fraunces","Playfair Display",Georgia,serif;--script:"Dancing Script","Palatino Linotype",cursive;--shine:linear-gradient(105deg,#ffe5bf 0%,#f8cbd7 39%,#f8daa8 64%,#fff0db 100%)}
+body{font-family:var(--body);font-weight:400;letter-spacing:-.14px;-webkit-font-smoothing:antialiased}
+.brand{font-family:var(--display);font-size:21px;font-weight:600;letter-spacing:-.9px}
+.brand em{font-family:var(--script);font-size:1.16em;font-weight:700;color:#f5c9cf;letter-spacing:0}
+.edition,.eyebrow,.form-label,.card-number,.card-state,.paper-meta,.counter,.art-bottom,.microcopy{font-family:var(--body);font-weight:750;letter-spacing:1.6px}
+.eyebrow{font-size:10px;letter-spacing:2.25px;color:#f5d4a7;text-shadow:0 1px 12px #f1c2a52e}
+.hero-title,.section-title,.finale-heading{font-family:var(--display);font-optical-sizing:auto;font-weight:650;letter-spacing:-2.1px;text-wrap:balance}
+.hero-title{font-size:clamp(47px,5.45vw,88px);line-height:1.17;margin:15px 0 17px;color:#fff7ef;text-shadow:0 5px 27px #f3ced426}
+.hero-title em,.section-title em{font-weight:550;font-style:italic;color:#f5b7c9;background:var(--shine);background-size:210% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:signatureShimmer 9s ease-in-out infinite}
+.hero-title .script-accent{display:inline-block;margin-left:.12em;font-family:var(--script);font-size:.90em;line-height:1.02;font-weight:700;letter-spacing:-.5px;color:#f9d9ad;background:linear-gradient(115deg,#fff1c9,#ffc4d2 55%,#eec78a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 5px 16px #e7aa9588);transform:rotate(-5deg);padding:0 .08em .15em 0}
+@keyframes signatureShimmer{0%,100%{background-position:5% 50%}50%{background-position:94% 50%}}
+.hero-subtitle{max-width:470px;font-size:14px;line-height:1.92;color:#f2dbe1;letter-spacing:0}
+.hero-subtitle strong,.finale-copy strong{font-weight:700;color:#ffe5bc}
+.sender-sign{width:fit-content;max-width:100%;display:flex;align-items:center;gap:12px;margin:0 0 24px;padding:10px 16px 11px 13px;border-radius:6px 24px 6px 24px;border:1px solid #f2d5b55c;background:linear-gradient(110deg,#69384f9e,#ffffff0b);box-shadow:inset 0 1px #fff6e132,0 9px 28px #150c142e}
+.sender-sign-icon{font:500 25px/1 var(--display);color:#ffd9b6;text-shadow:0 0 18px #ffd1be80}
+.sender-sign-copy{display:flex;flex-direction:column;gap:1px}
+.sender-sign-label{font:700 9px/1.4 var(--body);letter-spacing:2.2px;color:#efd7d9}
+.sender-sign strong{font:700 28px/1.3 var(--script);letter-spacing:.4px;color:#ffe1b5;text-shadow:0 3px 17px #f4c6ad66;overflow-wrap:anywhere}
+.personalization{border-color:#f3d7bb66;box-shadow:0 19px 60px #1107104f,inset 0 1px #fff9e739}
+.form-label{font-size:10px;letter-spacing:1.25px;color:#f8e3d7}
+.personalization input{font-family:var(--body);font-size:13px;font-weight:600;color:#fffaf5;letter-spacing:.15px}
+.action{font-family:var(--body);font-size:12px;font-weight:800;letter-spacing:.1px}
+.action-primary{background:linear-gradient(108deg,#f8dda9,#f9bdcb 60%,#e9a6bb);box-shadow:0 11px 32px #c97d9361}
+.microcopy{font-size:9px;font-weight:500;letter-spacing:.6px}
+.art-plaque{font-family:var(--script);font-weight:700;font-size:30px;letter-spacing:.3px}
+.section-title{font-size:clamp(41px,5.1vw,66px);line-height:1.24;color:#fff5ef}
+.section-lead{font-size:14px;line-height:1.9;color:#f0d6de}
+.section-lead strong{color:#ffe0b4;font-weight:800}
+.counter b{font-family:var(--display);font-weight:650;font-variant-numeric:lining-nums tabular-nums}
+.card-name{font-family:var(--display);font-size:clamp(26px,2.35vw,33px);font-weight:690;letter-spacing:-.7px;line-height:1.25;color:#ffe6ce}
+.wish-card.is-open .card-name{color:#9c4267}
+.card-hint{font-family:var(--body);font-size:12px;line-height:1.8;color:#e5cbd6}
+.card-note{font-family:var(--body);font-size:12.5px;line-height:1.9;color:#6a3b53;font-weight:500}
+.card-bottom,.card-number{letter-spacing:1px;font-size:9px}
+.paper-meta{font-size:9px;letter-spacing:2px}
+.letter-scene .section-title{color:#753c57}
+.letter-scene .section-title em{background:linear-gradient(110deg,#a34f74,#b87693 55%,#8d4a65);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.paper-title{font-family:var(--script);font-size:clamp(50px,7.8vw,84px);line-height:1.16;font-weight:700;color:#a15375;margin:12px 0 7px;letter-spacing:-.7px;text-shadow:0 4px 20px #c98aa025}
+.paper-date{font-family:var(--display);font-size:clamp(56px,8.9vw,94px);font-weight:750;line-height:1.05;letter-spacing:-3px;color:#773d54}
+.paper-salutation{font-family:var(--script);font-size:clamp(28px,4vw,39px);font-weight:700;color:#a35479;margin-bottom:22px}
+.letter-lines p{font-family:var(--body);font-size:15px;font-weight:450;line-height:2.04;color:#553d4b;letter-spacing:.1px}
+.letter-lines p:first-child{font-weight:700;color:#8d496a;font-size:16px}
+.paper-signature{font-family:var(--script);font-weight:700;font-size:clamp(29px,4.8vw,40px);line-height:1.35;color:#aa5276;text-shadow:0 3px 15px #ca879e36}
+.finale-heading{font-size:clamp(46px,7.4vw,91px);font-weight:650;line-height:1.21;color:#7c3b53;text-shadow:0 6px 24px #edbbcd54}
+.finale-heading em{font:700 1.03em/1.2 var(--script);letter-spacing:-.4px;background:linear-gradient(115deg,#a54c75,#c06c95 50%,#925779);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 5px 14px #d999b34a)}
+.finale-copy{font-size:14px;line-height:1.95;font-weight:500;color:#694458}
+.finale-copy strong{color:#ac5679}
+.finale-from{font:700 clamp(31px,4vw,42px)/1.3 var(--script);color:#aa5278;text-shadow:0 5px 20px #d9a6b255}
+.progress-caption{font-family:var(--script);font-size:25px;font-weight:700}
+.progress-step{font-family:var(--body);font-weight:600}
+@media(max-width:1080px){.hero-title{font-size:clamp(43px,6vw,71px)}.card-name{font-size:28px}}
+@media(max-width:700px){
+ .brand{font-size:17px}.brand em{font-size:1.11em}
+ .eyebrow{font-size:9px;letter-spacing:1.4px}
+ .hero-title{font-size:clamp(39px,9.2vw,59px);line-height:1.23;letter-spacing:-1.4px;margin:15px 0 15px}
+ .hero-title .script-accent{font-size:.93em}
+ .hero-subtitle{font-size:12px;line-height:1.9;margin-bottom:18px}
+ .sender-sign{margin:0 auto 19px;padding:7px 14px 8px 11px;gap:10px}
+ .sender-sign-label{font-size:8px;letter-spacing:1.8px}
+ .sender-sign strong{font-size:24px}
+ .sender-sign-icon{font-size:21px}
+ .section-title{font-size:clamp(37px,9vw,58px);letter-spacing:-1px}
+ .section-lead{font-size:12px}
+ .card-name{font-size:26px}
+ .card-hint{font-size:12px}
+ .card-note{font-size:12px}
+ .paper-title{font-size:clamp(44px,10vw,64px)}
+ .paper-date{font-size:clamp(54px,13vw,78px)}
+ .letter-lines p{font-size:13.5px;line-height:2}
+ .letter-lines p:first-child{font-size:14px}
+ .paper-signature{font-size:32px}
+ .finale-heading{font-size:clamp(42px,9vw,60px);letter-spacing:-1.2px}
+ .finale-copy{font-size:13px}
+ .finale-from{font-size:30px}
+}
+@media(max-width:370px){.hero-title{font-size:36px}.sender-sign strong{font-size:22px}.card-name{font-size:24px}.paper-date{font-size:54px}.finale-heading{font-size:39px}}
+@media(prefers-reduced-motion:reduce){.hero-title em,.section-title em{animation:none!important}}
+@media(max-width:430px){.edition{display:none}.sound-toggle{min-width:70px;height:36px;border-radius:22px}.topbar{justify-content:space-between}}
+
 </style>
 </head>
 <body data-scene="welcome">
@@ -162,8 +242,9 @@ body:is([data-scene="letter"],[data-scene="finale"]) .progress-step{color:#945c7
    <p class="eyebrow">Ngày phụ nữ Việt Nam · 20 tháng 10</p>
    <h1 class="hero-title">Mỗi người phụ nữ<br>là một <em>đóa hoa</em><span class="script-accent">rực rỡ.</span></h1>
    <p class="hero-subtitle">Có một chút yêu thương, một chút phép màu và <strong>một món quà đặc biệt</strong> đang chờ bạn mở ra. ♡</p>
+   <div class="sender-sign" aria-label="Người gửi thiệp"><span class="sender-sign-icon" aria-hidden="true">✧</span><span class="sender-sign-copy"><span class="sender-sign-label">THIỆP ĐƯỢC GỬI TỪ</span><strong id="sender-display">Quốc Cường</strong></span></div>
    <form id="name-form" class="personalization" autocomplete="off">
-    <div class="input-group"><div><label class="form-label" for="recipient">TÊN NGƯỜI NHẬN</label><input type="text" id="recipient" name="to" maxlength="55" placeholder="Ví dụ: Linh" autocomplete="given-name"></div><div><label class="form-label" for="sender">NGƯỜI GỬI (TÙY CHỌN)</label><input type="text" id="sender" name="from" maxlength="55" placeholder="Ví dụ: Một người thương"></div></div>
+    <div class="input-group"><div><label class="form-label" for="recipient">TÊN NGƯỜI NHẬN</label><input type="text" id="recipient" name="to" maxlength="55" placeholder="Ví dụ: Linh" autocomplete="given-name"></div><div><label class="form-label" for="sender">NGƯỜI GỬI</label><input type="text" id="sender" name="from" maxlength="55" placeholder="Ví dụ: Quốc Cường" value="Quốc Cường"></div></div>
     <button class="action action-primary" type="submit"><span>Mở món quà dành riêng cho bạn</span><span aria-hidden="true">↗</span></button>
     <small class="microcopy">✦ Chạm nút, ngắm hoa nở & khám phá những lời thương ✦</small>
    </form>
@@ -244,13 +325,13 @@ body:is([data-scene="letter"],[data-scene="finale"]) .progress-step{color:#945c7
 <script>
 (()=>{'use strict';
  // Optional editorial fonts: failure/offline never blocks the animation or controls.
- setTimeout(()=>{const link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap';link.media='print';link.onload=()=>{link.media='all'};document.head.append(link)},100); 
+ setTimeout(()=>{const link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap';link.media='print';link.onload=()=>{link.media='all'};document.head.append(link)},100); 
  const $=id=>document.getElementById(id);
  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
  const ids=['welcome','wishes','letter','finale'];
  const params=new URLSearchParams(location.search);
  const tidy=v=>Array.from(String(v||'').replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069]/g,'').trim()).slice(0,55).join('');
- let to=tidy(params.get('to')),from=tidy(params.get('from'));
+ let to=tidy(params.get('to')),from=tidy(params.get('from'))||'Quốc Cường';
  let current='welcome',unlocked=0,opened=new Set(),transitionTimer=0,toastTimer=0;
  let soundEnabled=false,audioCtx=null,meadowController=null,meadowFrame=0;
  const story=[
@@ -259,7 +340,7 @@ body:is([data-scene="letter"],[data-scene="finale"]) .progress-step{color:#945c7
    ()=>'Dù hôm nay có rực rỡ hay bình thường, bạn vẫn luôn là một đóa hoa rất riêng — xinh đẹp theo cách chẳng ai có thể thay thế.',
    ()=>'Cảm ơn vì đã hiện diện và khiến thế giới này thêm một chút ấm áp. Chúc bạn một ngày 20/10 tràn ngập hoa, nụ cười và yêu thương. ♡'
  ];
- const normalize=()=>{to=tidy($('recipient').value);from=tidy($('sender').value);$('wish-name').textContent=to||'bạn';$('final-name').textContent=to||'bạn';$('letter-to').textContent=to?`Gửi ${to} thương mến,`:'Gửi bạn thương mến,';$('letter-from').textContent=from?`Thương mến, ${from} ♡`:'Với tất cả yêu thương ♡';$('final-from').textContent=from?`Thương mến, ${from} ♡`:'Thương mến, từ một người luôn quý bạn ♡';document.title=to?`Gửi ${to} · Quà 20/10`:'Một chút dịu dàng · Quà 20/10';};
+ const normalize=()=>{to=tidy($('recipient').value);from=tidy($('sender').value)||'Quốc Cường';$('sender-display').textContent=from;$('wish-name').textContent=to||'bạn';$('final-name').textContent=to||'bạn';$('letter-to').textContent=to?`Gửi ${to} thương mến,`:'Gửi bạn thương mến,';$('letter-from').textContent=from?`Thương mến, ${from} ♡`:'Với tất cả yêu thương ♡';$('final-from').textContent=from?`Thương mến, ${from} ♡`:'Thương mến, từ một người luôn quý bạn ♡';document.title=to?`Gửi ${to} · Quà 20/10`:'Một chút dịu dàng · Quà 20/10';};
  $('recipient').value=to;$('sender').value=from;normalize();
  function personalizedURL(){const u=new URL(location.href);u.search='';u.hash='';if(to)u.searchParams.set('to',to);if(from)u.searchParams.set('from',from);return u.href;}
  function syncURL(){try{history.replaceState(null,'',personalizedURL())}catch{}}
