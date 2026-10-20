@@ -242,9 +242,9 @@ body{font-family:var(--body);font-weight:400;letter-spacing:-.14px;-webkit-font-
    <p class="eyebrow">Ngày phụ nữ Việt Nam · 20 tháng 10</p>
    <h1 class="hero-title">Mỗi người phụ nữ<br>là một <em>đóa hoa</em><span class="script-accent">rực rỡ.</span></h1>
    <p class="hero-subtitle">Có một chút yêu thương, một chút phép màu và <strong>một món quà đặc biệt</strong> đang chờ bạn mở ra. ♡</p>
-   <div class="sender-sign" aria-label="Người gửi thiệp"><span class="sender-sign-icon" aria-hidden="true">✧</span><span class="sender-sign-copy"><span class="sender-sign-label">THIỆP ĐƯỢC GỬI TỪ</span><strong id="sender-display">Nguyễn Văn Tài</strong></span></div>
+   <div class="sender-sign" aria-label="Người gửi thiệp"><span class="sender-sign-icon" aria-hidden="true">✧</span><span class="sender-sign-copy"><span class="sender-sign-label">THIỆP ĐƯỢC GỬI TỪ</span><strong id="sender-display">Quốc Cường</strong></span></div>
    <form id="name-form" class="personalization" autocomplete="off">
-    <div class="input-group"><div><label class="form-label" for="recipient">TÊN NGƯỜI NHẬN</label><input type="text" id="recipient" name="to" maxlength="55" placeholder="Ví dụ: Linh" autocomplete="given-name"></div><div><label class="form-label" for="sender">NGƯỜI GỬI</label><input type="text" id="sender" name="from" maxlength="55" placeholder="Ví dụ: Nguyễn Văn Tài" value="Nguyễn Văn Tài"></div></div>
+    <div class="input-group"><div><label class="form-label" for="recipient">TÊN NGƯỜI NHẬN</label><input type="text" id="recipient" name="to" maxlength="55" placeholder="Ví dụ: Linh" autocomplete="given-name"></div><div><label class="form-label" for="sender">NGƯỜI GỬI</label><input type="text" id="sender" name="from" maxlength="55" placeholder="Ví dụ: Quốc Cường" value="Quốc Cường"></div></div>
     <button class="action action-primary" type="submit"><span>Mở món quà dành riêng cho bạn</span><span aria-hidden="true">↗</span></button>
     <small class="microcopy">✦ Chạm nút, ngắm hoa nở & khám phá những lời thương ✦</small>
    </form>
@@ -331,7 +331,7 @@ body{font-family:var(--body);font-weight:400;letter-spacing:-.14px;-webkit-font-
  const ids=['welcome','wishes','letter','finale'];
  const params=new URLSearchParams(location.search);
  const tidy=v=>Array.from(String(v||'').replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069]/g,'').trim()).slice(0,55).join('');
- let to=tidy(params.get('to')),from=tidy(params.get('from'))||'Nguyễn Văn Tài';
+ let to=tidy(params.get('to')),from=tidy(params.get('from'))||'Quốc Cường';
  let current='welcome',unlocked=0,opened=new Set(),transitionTimer=0,toastTimer=0;
  let soundEnabled=false,audioCtx=null,meadowController=null,meadowFrame=0;
  const story=[
@@ -340,7 +340,7 @@ body{font-family:var(--body);font-weight:400;letter-spacing:-.14px;-webkit-font-
    ()=>'Dù hôm nay có rực rỡ hay bình thường, bạn vẫn luôn là một đóa hoa rất riêng — xinh đẹp theo cách chẳng ai có thể thay thế.',
    ()=>'Cảm ơn vì đã hiện diện và khiến thế giới này thêm một chút ấm áp. Chúc bạn một ngày 20/10 tràn ngập hoa, nụ cười và yêu thương. ♡'
  ];
- const normalize=()=>{to=tidy($('recipient').value);from=tidy($('sender').value)||'Nguyễn Văn Tài';$('sender-display').textContent=from;$('wish-name').textContent=to||'bạn';$('final-name').textContent=to||'bạn';$('letter-to').textContent=to?`Gửi ${to} thương mến,`:'Gửi bạn thương mến,';$('letter-from').textContent=from?`Thương mến, ${from} ♡`:'Với tất cả yêu thương ♡';$('final-from').textContent=from?`Thương mến, ${from} ♡`:'Thương mến, từ một người luôn quý bạn ♡';document.title=to?`Gửi ${to} · Quà 20/10`:'Một chút dịu dàng · Quà 20/10';};
+ const normalize=()=>{to=tidy($('recipient').value);from=tidy($('sender').value)||'Quốc Cường';$('sender-display').textContent=from;$('wish-name').textContent=to||'bạn';$('final-name').textContent=to||'bạn';$('letter-to').textContent=to?`Gửi ${to} thương mến,`:'Gửi bạn thương mến,';$('letter-from').textContent=from?`Thương mến, ${from} ♡`:'Với tất cả yêu thương ♡';$('final-from').textContent=from?`Thương mến, ${from} ♡`:'Thương mến, từ một người luôn quý bạn ♡';document.title=to?`Gửi ${to} · Quà 20/10`:'Một chút dịu dàng · Quà 20/10';};
  $('recipient').value=to;$('sender').value=from;normalize();
  function personalizedURL(){const u=new URL(location.href);u.search='';u.hash='';if(to)u.searchParams.set('to',to);if(from)u.searchParams.set('from',from);return u.href;}
  function syncURL(){try{history.replaceState(null,'',personalizedURL())}catch{}}
