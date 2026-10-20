@@ -240,8 +240,8 @@ body:is([data-scene="letter"],[data-scene="finale"]) .progress-step{color:#945c7
 
 <aside id="music-dock" class="music-dock" aria-label="Nhạc nền 20/10" hidden>
   <div class="music-dock-header"><strong class="music-dock-title">♫ Nhạc cho ngày 20/10</strong><button type="button" class="music-dock-close" id="music-close" aria-label="Tắt nhạc và đóng trình phát">×</button></div>
-  <p class="music-dock-note">Bật nhạc bằng nút ▶ trên video nếu iPhone không tự phát. Giữ khung này mở để nghe trong lúc xem thiệp.</p>
-  <iframe id="music-frame" title="Video nhạc ngày 20/10 từ YouTube" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <p class="music-dock-note" id="music-status" role="status">♫ Nhấn nút loa để nghe nhạc 20/10.</p>
+  <div id="music-frame" aria-label="Video bài nhạc ngày 20/10 từ YouTube" style="width:100%;min-height:210px"></div>
   <a class="music-dock-link" href="https://www.youtube.com/watch?v=yaECNoFISoc" target="_blank" rel="noopener noreferrer">Không phát được? Mở trên YouTube ↗</a>
 </aside>
 <div id="feedback" role="status" aria-live="polite"></div>
@@ -273,24 +273,51 @@ body:is([data-scene="letter"],[data-scene="finale"]) .progress-step{color:#945c7
  function tone(freq=659,when=0,lasting=.45,volume=.065){if(!soundEnabled)return;try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();const at=audioCtx.currentTime+when;osc.type='sine';osc.frequency.setValueAtTime(freq,at);gain.gain.setValueAtTime(.0001,at);gain.gain.exponentialRampToValueAtTime(volume,at+.018);gain.gain.exponentialRampToValueAtTime(.0001,at+lasting);osc.connect(gain).connect(audioCtx.destination);osc.start(at);osc.stop(at+lasting+.03)}catch{}}
  function chime(){tone(523,.0,.5,.05);tone(659,.16,.55,.05);tone(784,.32,.85,.05)}
 
- // The supplied YouTube link is played only through the visible official embed.
- // Safari may require the listener to tap the player's own Play button.
- const musicToggle=$('sound-toggle'), musicDock=$('music-dock'), musicFrame=$('music-frame');
+
+ // Use the official YouTube IFrame API. Playback is requested from the speaker
+ // click; Safari/YouTube can still require the in-player Play control.
+ const musicToggle=$('sound-toggle'), musicDock=$('music-dock'), musicStatus=$('music-status');
+ let ytPlayer=null, ytReady=false, musicWanted=false;
+ window.onYouTubeIframeAPIReady=()=>{ytReady=true;if(musicWanted)createYTPlayer()};
+ const ytScript=document.createElement('script');
+ ytScript.src='https://www.youtube.com/iframe_api';
+ ytScript.async=true;
+ ytScript.onerror=()=>{musicStatus.textContent='Không tải được YouTube. Bạn có thể mở bài nhạc bằng liên kết bên dưới.'};
+ document.head.appendChild(ytScript);
+ function createYTPlayer(){
+   if(!musicWanted||ytPlayer||!ytReady||!window.YT?.Player)return;
+   musicStatus.textContent='Đang kết nối nhạc…';
+   ytPlayer=new YT.Player('music-frame',{
+     width:'100%',height:'210',videoId:'yaECNoFISoc',
+     playerVars:{autoplay:1,playsinline:1,controls:1,loop:1,playlist:'yaECNoFISoc',rel:0},
+     events:{
+       onReady:event=>{if(musicWanted){event.target.unMute();event.target.playVideo()}},
+       onStateChange:event=>{
+         if(event.data===1)musicStatus.textContent='♫ Đang phát nhạc. Bạn có thể vừa nghe vừa xem thiệp.';
+         else if(event.data===2&&musicWanted)musicStatus.textContent='Nhạc đã tạm dừng. Nhấn nút loa hoặc nút ▶ để tiếp tục.';
+       },
+       onAutoplayBlocked:()=>{if(musicWanted)musicStatus.textContent='iPhone đang chặn phát tự động từ YouTube. Hãy chạm ▶ trong khung video; nếu gửi file MP3, mình có thể làm nút loa phát ngay.'},
+       onError:()=>{musicStatus.textContent='Video chưa phát được ở đây. Hãy thử mở bằng đường link YouTube bên dưới.'}
+     }
+   });
+ }
  function setMusic(open){
+   musicWanted=open;
    musicDock.hidden=!open;
    musicToggle.setAttribute('aria-pressed',String(open));
-   musicToggle.setAttribute('aria-label',open?'Tắt nhạc 20/10':'Bật nhạc 20/10 từ YouTube');
-   musicToggle.title=open?'Tắt nhạc 20/10':'Bật nhạc 20/10';
+   musicToggle.setAttribute('aria-label',open?'Tạm dừng nhạc 20/10':'Bật nhạc 20/10');
+   musicToggle.title=open?'Tạm dừng nhạc':'Phát nhạc';
    musicToggle.querySelector('.music-label').textContent=open?'Tắt nhạc':'Nhạc ♪';
    $('sound-wave').setAttribute('d',open?'M15.5 8a5 5 0 0 1 0 8m2.5-11a9 9 0 0 1 0 14':'m16 9 4 6m0-6-4 6');
    if(open){
-     // Loading after a tap helps, but mobile autoplay is never guaranteed.
-     musicFrame.src='https://www.youtube.com/embed/yaECNoFISoc?autoplay=1&playsinline=1&controls=1&loop=1&playlist=yaECNoFISoc&rel=0';
-   } else {
-     musicFrame.removeAttribute('src'); // stop playback cleanly
+     musicStatus.textContent='♫ Đang mở nhạc, vui lòng chờ một chút…';
+     if(ytPlayer?.playVideo){try{ytPlayer.unMute();ytPlayer.playVideo()}catch{}}
+     else if(ytReady)createYTPlayer();
+   }else{
+     if(ytPlayer?.pauseVideo){try{ytPlayer.pauseVideo()}catch{}}
    }
  }
- musicToggle.addEventListener('click',()=>setMusic(musicDock.hidden));
+ musicToggle.addEventListener('click',()=>setMusic(!musicWanted));
  $('music-close').addEventListener('click',()=>setMusic(false));
 
  function particles(){const wrap=$('atmosphere');const frag=document.createDocumentFragment();if(isReduced()){wrap.replaceChildren();return;}for(let i=0;i<26;i++){const dot=document.createElement('span');dot.className='ambient-dot';dot.style.cssText=`--x:${(i*41.7)%99}%;--y:${(i*29.4)%95}%;--s:${2+i%4}px;--d:${3+i%5}s;--delay:${-i*.57}s`;frag.append(dot)}for(let i=0;i<14;i++){const p=document.createElement('span');p.className='falling-petal';p.style.cssText=`--x:${(i*17.3)%100}%;--s:${8+i%5*2}px;--d:${15+i%5*2}s;--delay:${-i*2.3}s;--drift:${i%2?70:-80}px`;frag.append(p)}wrap.replaceChildren(frag)}particles();reduceMotion.addEventListener('change',()=>{particles();if(isReduced()&&current==='welcome'&&document.body.classList.contains('blooming'))finishBloom();});
